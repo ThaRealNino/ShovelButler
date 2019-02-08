@@ -20,13 +20,13 @@ public class ShovelTailer extends TailerListenerAdapter {
             public void run() {
                 playerList.clear();
             }
-        }, 0, 60*5000);
+        }, 0, 60*1000*Config.delay);
     }
 
 
     public void handle(String line) {
 
-        if(line.contains("issued server command: /gimmeShovel")) { //Edit command if wanted
+        if(line.contains("issued server command: /" + Config.command)) {
 
             String name = NameFinder.getName(line);
 
@@ -46,7 +46,7 @@ public class ShovelTailer extends TailerListenerAdapter {
 
     public void dontGiveShovel(String name) {
         try {
-            Rcon rcon = new Rcon(<SERVER>, <PORT>, <PASSWORD>.getBytes());
+            Rcon rcon = new Rcon(Config.rconServer, Config.rconPort, Config.rconPassword.getBytes());
             rcon.command("msg " + name + " Nicht so gierig!");
             rcon.disconnect();
 
@@ -57,7 +57,7 @@ public class ShovelTailer extends TailerListenerAdapter {
 
     public void giveShovel(String name) {
         try {
-            Rcon rcon = new Rcon(<SERVER>, <PORT>, <PASSWORD>.getBytes());
+            Rcon rcon = new Rcon(Config.rconServer, Config.rconPort, Config.rconPassword.getBytes());
             rcon.command("give " + name + " minecraft:golden_shovel");
             rcon.disconnect();
 

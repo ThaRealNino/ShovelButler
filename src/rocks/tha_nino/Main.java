@@ -11,7 +11,7 @@ public class Main {
 
         TailerListener listener = new ShovelTailer();
 
-        File file = new File(<PATH_TO_SERVER_LOG>); // INSERT HERE
+        File file = new File(Config.logFile);
 
         Tailer tailer = new Tailer(file, listener, 200);
 
